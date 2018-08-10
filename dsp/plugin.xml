@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="dsp" version="0.0.1">
+  <name>dsp</name>
+  <js-module name="dsp" src="www/dsp.js">
+    <clobbers target="dsp"/>
+  </js-module>
+  
+  
+  <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+             <feature name="dsp">
+        <param name="android-package" value="dsp.dsp"/>
+      </feature>
+        </config-file>
+     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- 硬件特性 -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+	
+	
+        <config-file target="AndroidManifest.xml" parent="application">
+          <provider
+              android:name="android.support.v4.content.FileProvider"
+              android:authorities="${applicationId}.provider"
+              android:exported="false"
+              android:grantUriPermissions="true" >
+              <meta-data
+                  android:name="android.support.FILE_PROVIDER_PATHS"
+                  android:resource="@xml/provider_paths"/>
+          </provider>
+        </config-file>
+         <source-file src="src/android/dsp.java" target-dir="src/dsp/dsp"/>
+        <framework src="com.android.support:support-v4:24.1.1+" />
+
+      </platform>
+ 
+</plugin>
