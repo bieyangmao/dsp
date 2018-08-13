@@ -49,13 +49,11 @@ public class dsp extends CordovaPlugin {
 
 	public void reconverIntent(CallbackContext callbackContext) {
 		
-		  Uri fileUri = Uri.fromFile(getOutputMediaFile());
+	  Uri fileUri = Uri.fromFile(getOutputMediaFile());
           Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
           intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-          intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 10);     //限制的录制时长 以秒为单位
-//        intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, 1024);        //限制视频文件大小 以字节为单位
-//        intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);      //设置拍摄的质量0~1
-//        intent.putExtra(MediaStore.EXTRA_FULL_SCREEN, false);        // 全屏设置
+          intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 10);     //拍摄时间
+ 
 
          this.cordova.startActivityForResult(this, intent, 1);
           callbackContext.success(getOutputMediaFile().toString());
